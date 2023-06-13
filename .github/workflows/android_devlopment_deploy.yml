@@ -67,7 +67,7 @@ jobs:
           appName: Common/workflow_test
           token: ${{ secrets.APPCENTER_TOKEN }}
           group: PUBLIC
-          file: android/app/build/outputs/apk/development/release/app-development-release.apk
+          file: android/app/build/outputs/apk/development/release/app-development-release-unsigned-signed.apk
           notifyTesters: true
           debug: false
 
