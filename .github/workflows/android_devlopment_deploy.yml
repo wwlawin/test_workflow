@@ -55,7 +55,7 @@ jobs:
       id: sign_app
       uses: r0adkll/sign-android-release@v1
       with:
-        releaseDirectory: android/app/build/outputs/apk/release
+        releaseDirectory: android/app/build/outputs/apk/development/release
         signingKeyBase64: ${{ secrets.APPCENTER_SIGNING_KEY }}
         alias: ${{ secrets.APPCENTER_ALIAS }}
         keyStorePassword: ${{ secrets.APPCENTER_KEYSTORE_PASS }}
@@ -67,7 +67,7 @@ jobs:
           appName: Common/workflow_test
           token: ${{ secrets.APPCENTER_TOKEN }}
           group: PUBLIC
-          file: android/app/build/outputs/apk/development/app-development-release.apk
+          file: android/app/build/outputs/apk/development/release/app-development-release.apk
           notifyTesters: true
           debug: false
 
