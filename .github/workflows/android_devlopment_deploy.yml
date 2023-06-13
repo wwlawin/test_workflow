@@ -64,7 +64,7 @@ jobs:
     - name: App Center
       uses: wzieba/AppCenter-Github-Action@v1.3.3
       with:
-          appName: Common/workflow_test
+          appName: common-u27u/apps/workflow_test
           token: ${{ secrets.APPCENTER_TOKEN }}
           group: PUBLIC
           file: android/app/build/outputs/apk/development/release/app-development-release-unsigned-signed.apk
