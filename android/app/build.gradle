@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
+    storedebug: ".env.store",
+   storerelease: ".env.store",
    productiondebug: ".env.production",
    productionrelease: ".env.production",
    developmentrelease: ".env.development",
@@ -152,18 +154,32 @@ android {
             applicationId "com.sg.pizzahut"
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.sg.pizzahut"
+            versionCode 1
+            versionName "1.0"
         }
         staging {
             minSdkVersion rootProject.ext.minSdkVersion
             applicationId "com.sg.pizzahut.staging"
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.sg.pizzahut"
+            versionCode 1
+            versionName "1.0"
         }
         development {
             minSdkVersion rootProject.ext.minSdkVersion
             applicationId "com.sg.pizzahut.development"
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.sg.pizzahut"
+            versionCode 1
+            versionName "1.0"
+        }
+        store {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId "com.sg.pizzahut"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.sg.pizzahut"
+            versionCode 1
+            versionName "1.0"
         }
     }
 

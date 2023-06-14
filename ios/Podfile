@@ -2,7 +2,20 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '12.4'
+
+project 'pizzahut_sg',{
+  'dev' => :debug,
+  'staging' => :debug,
+  'prod' => :debug,
+  'appstore' => :debug,
+  'dev.release' => :release,
+  'staging.release' => :release,
+  'prod.release' => :release,
+  'appstore.release' => :release,
+}
+
 install! 'cocoapods', :deterministic_uuids => false
+
 
 target 'pizzahut_sg' do
   config = use_native_modules!
@@ -21,7 +34,7 @@ target 'pizzahut_sg' do
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
     # you should disable the next line.
-    :flipper_configuration => FlipperConfiguration.enabled,
+    :flipper_configuration => FlipperConfiguration.enabled(['dev', 'staging', 'prod', 'appstore', 'dev.release', 'staging.release', 'prod.release', 'appstore.release']),
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
