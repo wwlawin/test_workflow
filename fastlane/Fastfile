@@ -1,0 +1,99 @@
+platform :ios do
+  desc "Build #{ENV["FASTLANE_SCHEME"]} IPA"
+  lane :build do
+    method_from_env = ENV["METHOD"]
+    export_method = (!method_from_env || method_from_env.empty?) ? 'enterprise' : method_from_env
+    puts "About to build #{ENV["FASTLANE_SCHEME"]}'s ipa. #{export_method}, #{ENV["FASTLANE_PROFILE_NAME"]}"
+    cocoapods(use_bundle_exec: false, podfile: "./ios/Podfile")
+    gym(
+      scheme: ENV["FASTLANE_SCHEME"], 
+      clean: true, 
+      workspace: './ios/Ignite.xcworkspace', 
+      export_method: export_method, 
+      export_options: {
+        method: export_method,
+        signingStyle: 'manual',
+        provisioningProfiles: {
+                "#{ENV["FASTLANE_APP_ID"]}": ENV["FASTLANE_PROFILE_NAME"]
+            }
+      },
+      output_directory: ENV["FASTLANE_OUTPUT_DIR"]
+    )
+  end
+  desc "Upload ipa to AppCenter"
+  lane :upload do
+    puts "About to upload #{ENV["FASTLANE_IPA_PATH"]} to Appcenter."
+    appcenter_upload(
+      api_token: ENV["FASTLANE_APPCENTER_IOS_API_TOKEN"],
+      owner_name: ENV["FASTLANE_APPCENTER_OWNER_NAME"],
+      owner_type: ENV["FASTLANE_APPCENTER_OWNER_TYPE"],
+      app_name: ENV["FASTLANE_APPCENTER_APP_NAME_IOS"],
+      destinations: ENV["FASTLANE_APPCENTER_DESTINATION"],
+      destination_type: ENV["FASTLANE_APPCENTER_DESTINATION_TYPE"],
+      file: ENV["FASTLANE_IPA_PATH"]
+    )
+  end
+  desc "Build and upload #{ENV["VERSION_CODE"]} IPA to App Center"
+  lane :publish do |options|
+    scheme = options[:env]
+    if scheme != nil
+      Dotenv.overload("../.env.#{scheme}")
+    end
+    build # call build lane
+    upload # call upload lane
+  end
+  desc "Build and upload ipas for all environments"
+  lane :release_all do
+      execute_for_all_envs{ publish }
+  end
+end
+
+platform :android do
+  desc "Build #{ENV["FASTLANE_FLAVOR"]} apk"
+  lane :build do |options|
+    puts "flavor is #{ENV["FASTLANE_FLAVOR"]}"
+    flavor="#{ENV["FASTLANE_FLAVOR"]}"
+    releaseFilePath = File.expand_path("..", Dir.pwd)
+    gradle(task: 'clean', project_dir: 'android/')
+    gradle(
+      task: "assemble",
+      build_type: 'Release',
+      project_dir: 'android/',
+      flavor: flavor, 
+      print_command: false,# reopen this line, to do specific flavor
+      properties: {
+        "android.injected.signing.store.file" => "#{releaseFilePath}#{ENV["FASTLANE_ANDROID_STORE_PATH"]}",
+        "android.injected.signing.store.password" => ENV["FASTLANE_ANDROID_STORE_PASS"],
+        "android.injected.signing.key.alias" => ENV["FASTLANE_ANDROID_ALIAS_KEY"],
+        "android.injected.signing.key.password" => ENV["FASTLANE_ANDROID_ALIAS_KEY_PASSWORD"],
+        }
+    )
+    
+  end
+  after_all do |lane, options|
+  # ...
+  end
+  desc "Upload apk to AppCenter"
+  lane :upload do
+    puts "About to upload /app-#{ENV["FASTLANE_FLAVOR"]}-release.apk to Appcenter."
+    puts "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+    appcenter_upload(
+      api_token: ENV["FASTLANE_APPCENTER_ANDROID_API_TOKEN"],
+      owner_name: ENV["FASTLANE_APPCENTER_OWNER_NAME"],
+      owner_type: ENV["FASTLANE_APPCENTER_OWNER_TYPE"],
+      app_name: ENV["FASTLANE_APPCENTER_APP_NAME_ANDROID"],
+      destinations: ENV["FASTLANE_APPCENTER_DESTINATION"],
+      destination_type: ENV["FASTLANE_APPCENTER_DESTINATION_TYPE"],
+      file: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+    )
+  end
+  desc "Build and upload to App Center."
+  lane :publish do |options|
+    flavor = options[:env]
+    if flavor != nil
+      Dotenv.overload("../.env.#{flavor}")
+    end
+    build(options) # call android build lane
+    upload # call upload to appCenter lane
+  end
+end
