@@ -16,7 +16,7 @@ platform :ios do
       filename: "provisioning.mobileprovision" # Rename the local provisioning profile
     )
     update_project_provisioning( # Set the project provisioning profile (related in Xcode to the General > Signing Release section)
-      xcodeproj: "pizzahut_sg.xcodeproj",
+      xcodeproj: "./ios/pizzahut_sg.xcodeproj",
       target_filter: "pizzahut_sg", # Name of your project
       profile: "./builds/provisioning.mobileprovision",
       build_configuration: "Release"
