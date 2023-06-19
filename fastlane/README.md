@@ -13,6 +13,27 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+## iOS
+
+### ios build
+
+```sh
+[bundle exec] fastlane ios build
+```
+
+Build pizzahutSG_dev IPA
+
+### ios setup
+
+```sh
+[bundle exec] fastlane ios setup
+```
+
+Setup Certificates and profiles
+
+----
+
+
 ## Android
 
 ### android build
