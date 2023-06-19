@@ -1,0 +1,10 @@
+app_identifier "com.sg.pizzahut.development"
+apple_id "enterprise@weeswares.com"
+team_id "N64M2H8CZA"
+
+for_platform :ios do
+  team_id 'N64M2H8CZA' # for all iOS related things
+  for_lane :build do
+    app_identifier "com.sg.pizzahut.development"
+  end
+end

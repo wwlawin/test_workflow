@@ -29,7 +29,7 @@ Build pizzahutSG_dev IPA
 [bundle exec] fastlane ios setup
 ```
 
-Setup Certificates and profiles
+Sync certificates
 
 ----
 
