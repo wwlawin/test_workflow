@@ -4,9 +4,10 @@ storage_mode("git")
 
 type("enterprise") # The default type, can be: appstore, adhoc, enterprise or development
 
-app_identifier(["com.sg.pizzahut.development"])
+app_identifier(["com.sg.pizzahut.development", "com.sg.pizzahut.staging"])
 username("enterprise@weeswares.com") # Your Apple Developer Portal username
 git_branch("main")
+team_id("N64M2H8CZA")
 # For all available options run `fastlane match --help`
 # Remove the # in the beginning of the line to enable the other options
 

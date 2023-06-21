@@ -1,10 +1,28 @@
 app_identifier "com.sg.pizzahut.development"
 apple_id "enterprise@weeswares.com"
 team_id "N64M2H8CZA"
+ENV["env_file"] = "../secrect_keys/.env.fldev"
 
 for_platform :ios do
   team_id 'N64M2H8CZA' # for all iOS related things
-  for_lane :build do
+  for_lane :publishDevelopment do
     app_identifier "com.sg.pizzahut.development"
+    ENV["env_file"] = "../secrect_keys/.env.fldev"
+  end
+  for_lane :publishStaging do
+    app_identifier "com.sg.pizzahut.staging"
+    ENV["env_file"] = "../secrect_keys/.env.flstaging"
+  end
+end
+
+for_platform :android do
+  team_id 'N64M2H8CZA' # for all iOS related things
+  for_lane :publishDevelopment do
+    app_identifier "com.sg.pizzahut.development"
+    ENV["env_file"] = "../secrect_keys/.env.fldev"
+  end
+  for_lane :publishStaging do
+    app_identifier "com.sg.pizzahut.staging"
+    ENV["env_file"] = "../secrect_keys/.env.flstaging"
   end
 end

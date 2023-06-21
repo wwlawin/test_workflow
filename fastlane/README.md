@@ -21,7 +21,23 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios build
 ```
 
-Build pizzahutSG_dev IPA
+Build  IPA
+
+### ios upload
+
+```sh
+[bundle exec] fastlane ios upload
+```
+
+Upload ipa to AppCenter
+
+### ios publishDevelopment
+
+```sh
+[bundle exec] fastlane ios publishDevelopment
+```
+
+Build and upload PizzaHut DEV to App Center
 
 ### ios setup
 
@@ -42,7 +58,7 @@ Sync certificates
 [bundle exec] fastlane android build
 ```
 
-Build development apk
+Build  apk
 
 ### android upload
 

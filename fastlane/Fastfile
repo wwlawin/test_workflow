@@ -6,6 +6,8 @@ end
 platform :ios do
   desc "Build #{ENV["FASTLANE_SCHEME"]} IPA"
   lane :build do
+    envFile = ENV["env_file"]
+    Dotenv.overload(envFile)
     setup
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     get_certificates( # Create or get certificate, and install it
@@ -19,13 +21,14 @@ platform :ios do
       xcodeproj: "./ios/pizzahut_sg.xcodeproj",
       target_filter: "pizzahut_sg", # Name of your project
       profile: "./builds/provisioning.mobileprovision",
-      build_configuration: "Release"
+      build_configuration: ENV["FASTLANE_IOS_BUILD_CONFIGURATION"]
     )
     update_project_team( # Set the right team on your project
-      teamid: CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
+      teamid: CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
+      path: "./ios/pizzahut_sg.xcodeproj"
     )
     # method_from_env = ENV["METHOD"]
-    export_method = (!method_from_env || method_from_env.empty?) ? 'enterprise' : method_from_env
+    export_method = ENV["FASTLANE_IOS_EXPORT_METHOD"]
     puts "About to build #{ENV["FASTLANE_SCHEME"]}'s ipa. #{export_method}, #{ENV["FASTLANE_PROFILE_NAME"]}"
     cocoapods(use_bundle_exec: false, podfile: "./ios/Podfile")
     gym(
@@ -33,35 +36,32 @@ platform :ios do
       clean: true, 
       workspace: './ios/pizzahut_sg.xcworkspace', 
       export_method: export_method, 
-      output_directory: './builds'
+      output_directory: ENV["FASTLANE_IPA_PATH"]
     )
   end
-  # desc "Upload ipa to AppCenter"
-  # lane :upload do
-  #   puts "About to upload #{ENV["FASTLANE_IPA_PATH"]} to Appcenter."
-  #   appcenter_upload(
-  #     api_token: ENV["FASTLANE_APPCENTER_IOS_API_TOKEN"],
-  #     owner_name: ENV["FASTLANE_APPCENTER_OWNER_NAME"],
-  #     owner_type: ENV["FASTLANE_APPCENTER_OWNER_TYPE"],
-  #     app_name: ENV["FASTLANE_APPCENTER_APP_NAME_IOS"],
-  #     destinations: ENV["FASTLANE_APPCENTER_DESTINATION"],
-  #     destination_type: ENV["FASTLANE_APPCENTER_DESTINATION_TYPE"],
-  #     file: ENV["FASTLANE_IPA_PATH"]
-  #   )
-  # end
-  # desc "Build and upload #{ENV["VERSION_CODE"]} IPA to App Center"
-  # lane :publish do |options|
-  #   scheme = options[:env]
-  #   if scheme != nil
-  #     Dotenv.overload("../.env.#{scheme}")
-  #   end
-  #   build # call build lane
-  #   upload # call upload lane
-  # end
-  # desc "Build and upload ipas for all environments"
-  # lane :release_all do
-  #     execute_for_all_envs{ publish }
-  # end
+  desc "Upload ipa to AppCenter"
+  lane :upload do
+    puts "About to upload #{ENV["FASTLANE_IPA_PATH"]} to Appcenter."
+    appcenter_upload(
+      api_token: ENV["FASTLANE_APPCENTER_IOS_API_TOKEN"],
+      owner_name: ENV["FASTLANE_APPCENTER_OWNER_NAME"],
+      owner_type: ENV["FASTLANE_APPCENTER_OWNER_TYPE"],
+      app_name: ENV["FASTLANE_APPCENTER_APP_NAME_IOS"],
+      destinations: ENV["FASTLANE_APPCENTER_DESTINATION"],
+      destination_type: ENV["FASTLANE_APPCENTER_DESTINATION_TYPE"],
+      file: ENV["FASTLANE_IPA_PATH"]
+    )
+  end
+  desc "Build and upload PizzaHut DEV to App Center"
+  lane :publishDevelopment do |options|
+    build # call build lane
+    upload # call upload lane
+  end
+  desc "Build and upload PizzaHut Staging to App Center"
+  lane :publishStaging do |options|
+    build # call build lane
+    upload # call upload lane
+  end
   desc "Sync certificates"
   lane :setup do
     match(type: "development")
@@ -72,6 +72,8 @@ end
 platform :android do
   desc "Build #{ENV["FASTLANE_FLAVOR"]} apk"
   lane :build do |options|
+    envFile = ENV["env_file"]
+    Dotenv.overload(envFile)
     puts "flavor is #{ENV["FASTLANE_FLAVOR"]}"
     flavor="#{ENV["FASTLANE_FLAVOR"]}"
     releaseFilePath = File.expand_path("..", Dir.pwd)
@@ -91,9 +93,6 @@ platform :android do
     )
     
   end
-  after_all do |lane, options|
-  # ...
-  end
   desc "Upload apk to AppCenter"
   lane :upload do
     puts "About to upload /app-#{ENV["FASTLANE_FLAVOR"]}-release.apk to Appcenter."
@@ -108,12 +107,13 @@ platform :android do
       file: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
     )
   end
-  desc "Build and upload to App Center."
-  lane :publish do |options|
-    flavor = options[:env]
-    if flavor != nil
-      Dotenv.overload("../.env.#{flavor}")
-    end
+  desc "Build and upload Android development app to App Center."
+  lane :publishDevelopment do |options|
+    build(options) # call android build lane
+    upload # call upload to appCenter lane
+  end
+  desc "Build and upload Android stating app to App Center."
+  lane :publishStaging do |options|
     build(options) # call android build lane
     upload # call upload to appCenter lane
   end

@@ -461,6 +461,7 @@
 			baseConfigurationReference = 96BFEF03C3650DAD611CBB9D /* Pods-pizzahut_sg-pizzahut_sgTests.dev.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -479,6 +480,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pizzahut_sg.app/pizzahut_sg";
 			};
 			name = dev;
@@ -563,7 +566,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = pizzahut_sg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -577,7 +580,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sg.pizzahut.staging;
 				PRODUCT_NAME = "PizzaHutSingapore Staging";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -589,6 +593,7 @@
 			baseConfigurationReference = 78DBEFE3E7E72B2C20892444 /* Pods-pizzahut_sg-pizzahut_sgTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -607,6 +612,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pizzahut_sg.app/pizzahut_sg";
 			};
 			name = staging;
@@ -682,10 +689,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -699,8 +706,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sg.pizzahut.development;
 				PRODUCT_NAME = "PizzaHutSingapore Dev";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.sg.pizzahut.development 1687149819";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.sg.pizzahut.development";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -712,6 +720,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sgTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -726,6 +735,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pizzahut_sg.app/pizzahut_sg";
 			};
 			name = dev.release;
@@ -803,7 +814,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -816,7 +827,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sg.pizzahut.staging;
 				PRODUCT_NAME = "PizzaHutSingapore Dev";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -828,6 +840,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sgTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -842,6 +855,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pizzahut_sg.app/pizzahut_sg";
 			};
 			name = staging.release;
@@ -926,7 +941,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = pizzahut_sg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -940,7 +955,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sg.pizzahut;
 				PRODUCT_NAME = PizzaHutSingapore;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -952,6 +968,7 @@
 			baseConfigurationReference = 8856292AA8CE80B1FC893E9B /* Pods-pizzahut_sg-pizzahut_sgTests.prod.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -970,6 +987,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pizzahut_sg.app/pizzahut_sg";
 			};
 			name = prod;
@@ -1047,7 +1066,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1060,7 +1079,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sg.pizzahut;
 				PRODUCT_NAME = PizzaHutSingapore;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1072,6 +1092,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sgTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1086,6 +1107,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pizzahut_sg.app/pizzahut_sg";
 			};
 			name = prod.release;
@@ -1163,7 +1186,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1176,7 +1199,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sg.pizzahut;
 				PRODUCT_NAME = PizzaHutSingapore;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1188,6 +1212,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				INFOPLIST_FILE = pizzahut_sgTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1202,6 +1227,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pizzahut_sg.app/pizzahut_sg";
 			};
 			name = appstore.release;
@@ -1215,7 +1242,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N64M2H8CZA;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = N64M2H8CZA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = pizzahut_sg/Info.plist;
@@ -1230,7 +1257,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sg.pizzahut.development;
 				PRODUCT_NAME = "PizzaHutSingapore Dev";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3c43bb6d-ca78-4d43-a065-a052d3d5574b";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.sg.pizzahut.development";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.sg.pizzahut.development";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
