@@ -7,11 +7,19 @@ for_platform :ios do
   team_id 'N64M2H8CZA' # for all iOS related things
   for_lane :publishDevelopment do
     app_identifier "com.sg.pizzahut.development"
-    ENV["env_file"] = "../secrect_keys/.env.fldev"
+    ENV["env_file"] = "../secrect_keys/.env.dev"
   end
   for_lane :publishStaging do
     app_identifier "com.sg.pizzahut.staging"
-    ENV["env_file"] = "../secrect_keys/.env.flstaging"
+    ENV["env_file"] = "../secrect_keys/.env.staging"
+  end
+  for_lane :publishDevelopmentFromGithubActions do
+    app_identifier "com.sg.pizzahut.development"
+    ENV["env_file"] = "../.github/workflows/.env.iosdev"
+  end
+  for_lane :publishStagingFromGithubActions do
+    app_identifier "com.sg.pizzahut.staging"
+    ENV["env_file"] = "../.github/workflows/.env.iosstaging"
   end
 end
 
@@ -19,10 +27,12 @@ for_platform :android do
   team_id 'N64M2H8CZA' # for all iOS related things
   for_lane :publishDevelopment do
     app_identifier "com.sg.pizzahut.development"
-    ENV["env_file"] = "../secrect_keys/.env.fldev"
+    ENV["env_file"] = "../secrect_keys/.env.dev"
   end
   for_lane :publishStaging do
     app_identifier "com.sg.pizzahut.staging"
-    ENV["env_file"] = "../secrect_keys/.env.flstaging"
+    ENV["env_file"] = "../secrect_keys/.env.staging"
   end
 end
+
+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

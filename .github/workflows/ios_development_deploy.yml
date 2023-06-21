@@ -11,7 +11,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: fastlane ios publishDevelopment
+      - run: fastlane ios publishDevelopmentFromGithubActions
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 

@@ -6,37 +6,45 @@ end
 platform :ios do
   desc "Build #{ENV["FASTLANE_SCHEME"]} IPA"
   lane :build do
+    clean_build_artifacts
     envFile = ENV["env_file"]
     Dotenv.overload(envFile)
-    setup
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     get_certificates( # Create or get certificate, and install it
       output_path: "./builds" # Download certificate in the build folder (you don't need to create the folder)
     )
-    get_provisioning_profile( # Create or get provisioning profile
-      output_path: "./builds",  # Download provisioning profile in the build folder
-      filename: "provisioning.mobileprovision" # Rename the local provisioning profile
-    )
-    update_project_provisioning( # Set the project provisioning profile (related in Xcode to the General > Signing Release section)
-      xcodeproj: "./ios/pizzahut_sg.xcodeproj",
-      target_filter: "pizzahut_sg", # Name of your project
-      profile: "./builds/provisioning.mobileprovision",
-      build_configuration: ENV["FASTLANE_IOS_BUILD_CONFIGURATION"]
-    )
+    # get_provisioning_profile( # Create or get provisioning profile
+    #   output_path: "./builds",  # Download provisioning profile in the build folder
+    #   filename: "provisioning.mobileprovision" # Rename the local provisioning profile
+    # )
+    # update_project_provisioning( # Set the project provisioning profile (related in Xcode to the General > Signing Release section)
+    #   xcodeproj: "./ios/pizzahut_sg.xcodeproj",
+    #   target_filter: "pizzahut_sg", # Name of your project
+    #   profile: "./builds/provisioning.mobileprovision",
+    #   build_configuration: ENV["FASTLANE_IOS_BUILD_CONFIGURATION"]
+    # )
     update_project_team( # Set the right team on your project
       teamid: CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
       path: "./ios/pizzahut_sg.xcodeproj"
     )
     # method_from_env = ENV["METHOD"]
     export_method = ENV["FASTLANE_IOS_EXPORT_METHOD"]
-    puts "About to build #{ENV["FASTLANE_SCHEME"]}'s ipa. #{export_method}, #{ENV["FASTLANE_PROFILE_NAME"]}"
+    puts "About to build #{ENV["FASTLANE_SCHEME"]}'s ipa. #{export_method}"
     cocoapods(use_bundle_exec: false, podfile: "./ios/Podfile")
     gym(
       scheme: ENV["FASTLANE_SCHEME"], 
       clean: true, 
       workspace: './ios/pizzahut_sg.xcworkspace', 
       export_method: export_method, 
-      output_directory: ENV["FASTLANE_IPA_PATH"]
+      output_directory: ENV["FASTLANE_OUTPUT_DIR"],
+      output_name: 'pizzahug_sg.ipa',
+      export_options: {
+        method: export_method,
+        signingStyle: 'manual',
+        provisioningProfiles: {
+          "#{ENV["FASTLANE_APP_ID"]}": "match inHouse #{ENV["FASTLANE_APP_ID"]}"
+        }
+      }
     )
   end
   desc "Upload ipa to AppCenter"
@@ -54,11 +62,24 @@ platform :ios do
   end
   desc "Build and upload PizzaHut DEV to App Center"
   lane :publishDevelopment do |options|
+    setup
     build # call build lane
     upload # call upload lane
   end
   desc "Build and upload PizzaHut Staging to App Center"
   lane :publishStaging do |options|
+    setup
+    build # call build lane
+    upload # call upload lane
+  end
+  desc "Build and upload PizzaHut DEV to App Center"
+  lane :publishDevelopmentFromGithubActions do |options|
+    match(git_basic_authorization: ENV["GITHUB_ACCESSKEY_FASTLANE_MATCH"],type: "enterprise")
+    build # call build lane
+    upload # call upload lane
+  end
+  desc "Build and upload PizzaHut Staging to App Center"
+  lane :publishStagingFromGithubActions do |options|
     build # call build lane
     upload # call upload lane
   end
