@@ -6,7 +6,6 @@ end
 platform :ios do
   desc "Build #{ENV["FASTLANE_SCHEME"]} IPA"
   lane :build do
-    clean_build_artifacts
     envFile = ENV["env_file"]
     Dotenv.overload(envFile)
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
@@ -23,10 +22,10 @@ platform :ios do
     #   profile: "./builds/provisioning.mobileprovision",
     #   build_configuration: ENV["FASTLANE_IOS_BUILD_CONFIGURATION"]
     # )
-    update_project_team( # Set the right team on your project
-      teamid: CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
-      path: "./ios/pizzahut_sg.xcodeproj"
-    )
+    # update_project_team( # Set the right team on your project
+    #   teamid: CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
+    #   path: "./ios/pizzahut_sg.xcodeproj"
+    # )
     # method_from_env = ENV["METHOD"]
     export_method = ENV["FASTLANE_IOS_EXPORT_METHOD"]
     puts "About to build #{ENV["FASTLANE_SCHEME"]}'s ipa. #{export_method}"
