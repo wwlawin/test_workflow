@@ -47,6 +47,22 @@ Build and upload PizzaHut DEV to App Center
 
 Build and upload PizzaHut Staging to App Center
 
+### ios publishDevelopmentFromGithubActions
+
+```sh
+[bundle exec] fastlane ios publishDevelopmentFromGithubActions
+```
+
+Build and upload PizzaHut DEV to App Center
+
+### ios publishStagingFromGithubActions
+
+```sh
+[bundle exec] fastlane ios publishStagingFromGithubActions
+```
+
+Build and upload PizzaHut Staging to App Center
+
 ### ios setup
 
 ```sh
