@@ -74,7 +74,7 @@ platform :ios do
   end
   desc "Build and upload PizzaHut DEV to App Center"
   lane :publishDevelopmentFromGithubActions do |options|
-    match(git_basic_authorization: "d3dsYXdpbjpnaHBfSTh5bDY1TE84RVhBOWE1WmlidlNQRGJMcXZIZkp4M1oxWG9j",type: "enterprise")
+    match(git_basic_authorization: "d3dsYXdpbjpnaHBfSTh5bDY1TE84RVhBOWE1WmlidlNQRGJMcXZIZkp4M1oxWG9j",type: "enterprise", readonly: true)
     build # call build lane
     upload # call upload lane
   end
