@@ -10,9 +10,9 @@ platform :ios do
     envFile = ENV["env_file"]
     Dotenv.overload(envFile)
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
-    get_certificates( # Create or get certificate, and install it
-      output_path: "./builds" # Download certificate in the build folder (you don't need to create the folder)
-    )
+    # get_certificates( # Create or get certificate, and install it
+    #   output_path: "./builds" # Download certificate in the build folder (you don't need to create the folder)
+    # )
     # get_provisioning_profile( # Create or get provisioning profile
     #   output_path: "./builds",  # Download provisioning profile in the build folder
     #   filename: "provisioning.mobileprovision" # Rename the local provisioning profile
