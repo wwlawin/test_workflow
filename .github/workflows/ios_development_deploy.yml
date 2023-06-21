@@ -25,4 +25,5 @@ jobs:
       - run: fastlane ios publishDevelopmentFromGithubActions
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          GITHUB_ACCESSKEY_FASTLANE_MATCH: ${{ secrets.ACCESSKEY_FASTLANE_MATCH }}
 
