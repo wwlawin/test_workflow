@@ -22,10 +22,10 @@ platform :ios do
     #   profile: "./builds/provisioning.mobileprovision",
     #   build_configuration: ENV["FASTLANE_IOS_BUILD_CONFIGURATION"]
     # )
-    # update_project_team( # Set the right team on your project
-    #   teamid: CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
-    #   path: "./ios/pizzahut_sg.xcodeproj"
-    # )
+    update_project_team( # Set the right team on your project
+      teamid: CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
+      path: "./ios/pizzahut_sg.xcodeproj"
+    )
     # method_from_env = ENV["METHOD"]
     export_method = ENV["FASTLANE_IOS_EXPORT_METHOD"]
     puts "About to build #{ENV["FASTLANE_SCHEME"]}'s ipa. #{export_method}"
@@ -36,7 +36,7 @@ platform :ios do
       workspace: './ios/pizzahut_sg.xcworkspace', 
       export_method: export_method, 
       output_directory: ENV["FASTLANE_OUTPUT_DIR"],
-      output_name: 'pizzahug_sg.ipa',
+      output_name: 'pizzahut_sg.ipa',
       export_options: {
         method: export_method,
         signingStyle: 'manual',
@@ -79,6 +79,7 @@ platform :ios do
   end
   desc "Build and upload PizzaHut Staging to App Center"
   lane :publishStagingFromGithubActions do |options|
+    match(git_basic_authorization: ENV["GITHUB_ACCESSKEY_FASTLANE_MATCH"],type: "enterprise", readonly: true)
     build # call build lane
     upload # call upload lane
   end

@@ -8,18 +8,22 @@ for_platform :ios do
   for_lane :publishDevelopment do
     app_identifier "com.sg.pizzahut.development"
     ENV["env_file"] = "../secrect_keys/.env.dev"
+    team_id "N64M2H8CZA"
   end
   for_lane :publishStaging do
     app_identifier "com.sg.pizzahut.staging"
     ENV["env_file"] = "../secrect_keys/.env.staging"
+    team_id "N64M2H8CZA"
   end
   for_lane :publishDevelopmentFromGithubActions do
     app_identifier "com.sg.pizzahut.development"
     ENV["env_file"] = "../.github/workflows/.env.iosdev"
+    team_id "N64M2H8CZA"
   end
   for_lane :publishStagingFromGithubActions do
     app_identifier "com.sg.pizzahut.staging"
     ENV["env_file"] = "../.github/workflows/.env.iosstaging"
+    team_id "N64M2H8CZA"
   end
 end
 
